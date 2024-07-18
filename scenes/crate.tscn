@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5aul3kv3yj6g"]
+
+[ext_resource type="PackedScene" uid="uid://cpdjecnwyp23r" path="res://scenes/item_container.tscn" id="1_rgff7"]
+[ext_resource type="Script" path="res://scripts/crate.gd" id="2_1jtmq"]
+[ext_resource type="Texture2D" uid="uid://fi5pcsctmfmp" path="res://graphics/objects/box/base.png" id="2_mubsg"]
+[ext_resource type="Texture2D" uid="uid://bu5a42lr8x7hn" path="res://graphics/objects/box/lid.png" id="3_4d3nc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gj2qr"]
+size = Vector2(160, 367)
+
+[node name="Crate" instance=ExtResource("1_rgff7")]
+script = ExtResource("2_1jtmq")
+
+[node name="BaseSprite" parent="." index="0"]
+texture = ExtResource("2_mubsg")
+
+[node name="LidSprite" parent="." index="1"]
+texture = ExtResource("3_4d3nc")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(-3.5, -0.999996)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_gj2qr")
+
+[node name="Marker2D" type="Marker2D" parent="SpawnPositions" index="0"]
+position = Vector2(-151, -46)
+
+[node name="Marker2D2" type="Marker2D" parent="SpawnPositions" index="1"]
+position = Vector2(-79, -11)
+rotation = -0.261799
+
+[node name="Marker2D4" type="Marker2D" parent="SpawnPositions" index="2"]
+position = Vector2(-17, 33)
+rotation = -0.261799
+
+[node name="Marker2D5" type="Marker2D" parent="SpawnPositions" index="3"]
+position = Vector2(-60, -50)
+rotation = -0.261799
+
+[node name="Marker2D6" type="Marker2D" parent="SpawnPositions" index="4"]
+position = Vector2(74, 19)
+rotation = -0.261799
+
+[node name="Marker2D7" type="Marker2D" parent="SpawnPositions" index="5"]
+position = Vector2(48, -40)
+rotation = -0.261799
+
+[node name="Marker2D8" type="Marker2D" parent="SpawnPositions" index="6"]
+position = Vector2(141, 25)
+rotation = -0.261799
+
+[node name="Marker2D9" type="Marker2D" parent="SpawnPositions" index="7"]
+position = Vector2(115, -55)
+rotation = -0.261799
+
+[node name="Marker2D10" type="Marker2D" parent="SpawnPositions" index="8"]
+position = Vector2(160, -63)
+rotation = -0.261799
+
+[node name="Marker2D3" type="Marker2D" parent="SpawnPositions" index="9"]
+position = Vector2(-135, 24)
+rotation = -0.261799

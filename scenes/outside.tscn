@@ -1,0 +1,88 @@
+[gd_scene load_steps=16 format=3 uid="uid://7j5pjafcy7ke"]
+
+[ext_resource type="PackedScene" uid="uid://xmyncnxws4lx" path="res://scenes/level.tscn" id="1_hpf4s"]
+[ext_resource type="PackedScene" uid="uid://bt6odq1q5fw5j" path="res://scenes/gate.tscn" id="2_0xutq"]
+[ext_resource type="Script" path="res://scripts/outside.gd" id="2_d370h"]
+[ext_resource type="Texture2D" uid="uid://ci4gep8angqcs" path="res://graphics/ground/stones.png" id="2_vc8wu"]
+[ext_resource type="Texture2D" uid="uid://dovrcv6ch4rpa" path="res://graphics/decals/moss/moss_4.png" id="3_b4dk0"]
+[ext_resource type="Texture2D" uid="uid://ctjfadrbvurhh" path="res://graphics/decals/moss/moss_2.png" id="4_busrd"]
+[ext_resource type="Texture2D" uid="uid://dmqk5bhfslvdp" path="res://graphics/decals/moss/moss_1.png" id="5_w6kpv"]
+[ext_resource type="Texture2D" uid="uid://ba46seh11on33" path="res://graphics/decals/dirt_patch.png" id="6_cd44q"]
+[ext_resource type="PackedScene" uid="uid://cilruuijjssc2" path="res://scenes/house.tscn" id="7_jhvuf"]
+[ext_resource type="PackedScene" uid="uid://brr10pl1qkvxq" path="res://scenes/steam_vent.tscn" id="8_1kic5"]
+[ext_resource type="PackedScene" uid="uid://rydq2beashso" path="res://scenes/toilet.tscn" id="11_kj7e4"]
+[ext_resource type="PackedScene" uid="uid://c5aul3kv3yj6g" path="res://scenes/crate.tscn" id="12_lodhe"]
+[ext_resource type="PackedScene" uid="uid://b0qvvpdfirvl2" path="res://scenes/items.tscn" id="13_sbnvy"]
+[ext_resource type="PackedScene" uid="uid://b05s67adqy64u" path="res://scenes/scout.tscn" id="14_h0td0"]
+
+[sub_resource type="TileSet" id="TileSet_qss1x"]
+tile_size = Vector2i(390, 390)
+
+[node name="Outside" instance=ExtResource("1_hpf4s")]
+script = ExtResource("2_d370h")
+
+[node name="Soil" type="Sprite2D" parent="Ground" index="0"]
+texture_repeat = 2
+position = Vector2(647, 426)
+texture = ExtResource("2_vc8wu")
+region_enabled = true
+region_rect = Rect2(-814.393, -227.785, 7551.33, 4046.24)
+
+[node name="TileMap" type="TileMap" parent="Ground" index="1"]
+tile_set = SubResource("TileSet_qss1x")
+format = 2
+layer_0/name = "Soil"
+layer_0/tile_data = PackedInt32Array(131070, 65537, 1, 131069, 65537, 1, 196607, 65537, 1, 131071, 131073, 0)
+layer_1/name = "Walls"
+layer_1/tile_data = PackedInt32Array(131071, 131072, 1, 196607, 0, 2, 131068, 65536, 2, 131069, 65536, 0, 65532, 0, 2, -3, 131072, 0, -4, 65536, 1, 131070, 65536, 0)
+
+[node name="Moss4" type="Sprite2D" parent="Ground" index="2"]
+position = Vector2(1680, 1507)
+texture = ExtResource("3_b4dk0")
+
+[node name="Moss2" type="Sprite2D" parent="Ground" index="3"]
+position = Vector2(1718, 1152)
+texture = ExtResource("4_busrd")
+
+[node name="Moss1" type="Sprite2D" parent="Ground" index="4"]
+position = Vector2(1333, 1295)
+texture = ExtResource("5_w6kpv")
+
+[node name="Decoration" type="Sprite2D" parent="Ground" index="5"]
+modulate = Color(0.8, 1, 1, 0.678431)
+position = Vector2(75.25, 1202.5)
+scale = Vector2(0.894865, 0.882826)
+texture = ExtResource("6_cd44q")
+
+[node name="House" parent="Ground" index="6" instance=ExtResource("7_jhvuf")]
+position = Vector2(3106, -788)
+rotation = 1.65108
+scale = Vector2(0.5, 0.5)
+
+[node name="SteamVent" parent="Ground" index="7" instance=ExtResource("8_1kic5")]
+position = Vector2(998, 391)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="Ground" index="8"]
+position = Vector2(1, 0)
+color = Color(0.212305, 0.212305, 0.212305, 1)
+blend_mode = 1
+
+[node name="Gate" parent="." index="1" instance=ExtResource("2_0xutq")]
+metadata/_edit_lock_ = true
+
+[node name="Crate" parent="." index="2" instance=ExtResource("12_lodhe")]
+position = Vector2(1098, 691)
+scale = Vector2(1.00361, 0.973451)
+
+[node name="Toilet" parent="." index="3" instance=ExtResource("11_kj7e4")]
+position = Vector2(673, 801)
+
+[node name="Item" parent="." index="7" instance=ExtResource("13_sbnvy")]
+position = Vector2(366, 359)
+
+[node name="Scout" parent="Enemies" index="0" instance=ExtResource("14_h0td0")]
+position = Vector2(233, 533)
+
+[connection signal="player_entered" from="Ground/House" to="." method="_on_house_player_entered"]
+[connection signal="player_exited" from="Ground/House" to="." method="_on_house_player_exited"]
+[connection signal="player_entered_gate" from="Gate" to="." method="_on_gate_player_entered_gate"]

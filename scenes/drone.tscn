@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmnom8qt1881j"]
+
+[ext_resource type="Script" path="res://scripts/drone.gd" id="1_emvoc"]
+[ext_resource type="Texture2D" uid="uid://de2fxfjepn2bx" path="res://graphics/enemies/drone.png" id="2_k6u0x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_no6yt"]
+radius = 66.0303
+
+[node name="drone" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 15
+script = ExtResource("1_emvoc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_k6u0x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_no6yt")
